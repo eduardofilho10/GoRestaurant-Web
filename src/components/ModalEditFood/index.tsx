@@ -8,10 +8,9 @@ import Input from '../Input';
 
 interface IFoodPlate {
   id: number;
-  name: string;
-  image: string;
+  title: string;
+  image_url: string;
   price: string;
-  description: string;
   available: boolean;
 }
 
@@ -23,10 +22,9 @@ interface IModalProps {
 }
 
 interface IEditFoodData {
-  name: string;
-  image: string;
+  title: string;
+  image_url: string;
   price: string;
-  description: string;
 }
 
 const ModalEditFood: React.FC<IModalProps> = ({
@@ -49,13 +47,12 @@ const ModalEditFood: React.FC<IModalProps> = ({
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Form ref={formRef} onSubmit={handleSubmit} initialData={editingFood}>
-        <h1>Editar Prato</h1>
-        <Input name="image" placeholder="Cole o link aqui" />
+        <h1>Editar Produto</h1>
+        <Input name="image_url" placeholder="Cole o link aqui" />
 
-        <Input name="name" placeholder="Ex: Moda Italiana" />
+        <Input name="title" placeholder="Ex: Moda Italiana" />
         <Input name="price" placeholder="Ex: 19.90" />
 
-        <Input name="description" placeholder="Descrição" />
 
         <button type="submit" data-testid="edit-food-button">
           <div className="text">Editar Prato</div>

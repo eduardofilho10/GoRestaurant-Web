@@ -12,10 +12,9 @@ import { FoodsContainer } from './styles';
 
 interface IFoodPlate {
   id: number;
-  name: string;
-  image: string;
+  title: string;
+  image_url: string;
   price: string;
-  description: string;
   available: boolean;
 }
 
@@ -28,7 +27,7 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     async function loadFoods(): Promise<void> {
       // TODO LOAD FOODS
-      const response = await api.get('/foods');
+      const response = await api.get('/show_product');
 
       setFoods(response.data);
     }
@@ -41,7 +40,7 @@ const Dashboard: React.FC = () => {
   ): Promise<void> {
     try {
       // TODO ADD A NEW FOOD PLATE TO THE API
-      const response = await api.post('/foods', {
+      const response = await api.post('/create_product', {
         ...food,
         available: true,
       });
@@ -57,7 +56,7 @@ const Dashboard: React.FC = () => {
   ): Promise<void> {
     // TODO UPDATE A FOOD PLATE ON THE API
     try {
-      const response = await api.put(`/foods/${editingFood.id}`, {
+      const response = await api.put(`/update-product/${editingFood.id}`, {
         ...editingFood,
         ...food,
       });
@@ -75,7 +74,7 @@ const Dashboard: React.FC = () => {
   async function handleDeleteFood(id: number): Promise<void> {
     // TODO DELETE A FOOD PLATE FROM THE API
     try{
-      await api.delete(`/foods/${id}`);
+      await api.delete(`/delete-product/${id}`);
 
       setFoods(foods.filter(food => food.id !== id));
     }catch(err){

@@ -8,10 +8,9 @@ import api from '../../services/api';
 
 interface IFoodPlate {
   id: number;
-  name: string;
-  image: string;
+  title: string;
+  image_url: string;
   price: string;
-  description: string;
   available: boolean;
 }
 
@@ -31,7 +30,7 @@ const Food: React.FC<IProps> = ({
   async function toggleAvailable(): Promise<void> {
     // TODO UPDATE STATUS (available)
     try {
-      await api.put(`/foods/${food.id}`, {
+      await api.put(`/update-product-disponivel-indisponisvel/${food.id}`, {
         ...food,
         available: !isAvailable,
       });
@@ -51,11 +50,10 @@ const Food: React.FC<IProps> = ({
   return (
     <Container available={isAvailable}>
       <header>
-        <img src={food.image} alt={food.name} />
+        <img src={food.image_url} alt={food.title} />
       </header>
       <section className="body">
-        <h2>{food.name}</h2>
-        <p>{food.description}</p>
+        <h2>{food.title}</h2>
         <p className="price">
           R$ <b>{food.price}</b>
         </p>

@@ -9,7 +9,7 @@ export const Container = styled.div<IFoodPlateProps>`
   border-radius: 8px;
 
   header {
-    background: #ffb84d;
+    background: #fffcfc;
     border-radius: 8px 8px 0px 0px;
     height: 192px;
     overflow: hidden;
